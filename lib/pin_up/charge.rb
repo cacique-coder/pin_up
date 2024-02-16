@@ -58,5 +58,13 @@ module Pin
     def self.capture(token)
       build_response(make_request(:put, { url: "charges/#{token}/capture" } ))
     end
+
+    # Verify the result of a 3D Secure enabled charge.
+    # args: session_token (String)
+    # returns: charge object
+    # https://pinpayments.com/developers/api-reference/charges#verify-charge
+    def self.verify(session_token)
+      build_response(make_request(:get, { url: "charges/verify?session_token=#{session_token}" } ))
+    end
   end
 end
